@@ -1,0 +1,22 @@
+mode: set
+dating-app/app/user/user_handler.go:15.64,20.51 2 0
+dating-app/app/user/user_handler.go:20.51,26.3 3 0
+dating-app/app/user/user_handler.go:29.76,31.2 0 0
+dating-app/app/user/user_handler.go:33.79,35.2 0 0
+dating-app/app/user/user_repository.go:11.46,13.2 1 0
+dating-app/app/user/user_repository.go:15.112,18.2 1 0
+dating-app/app/user/user_repository.go:20.95,23.2 1 0
+dating-app/app/user/user_repository.go:25.131,28.2 1 0
+dating-app/app/user/user_usecase.go:21.93,26.2 1 1
+dating-app/app/user/user_usecase.go:28.139,30.16 2 1
+dating-app/app/user/user_usecase.go:38.2,38.19 1 1
+dating-app/app/user/user_usecase.go:45.2,46.16 2 1
+dating-app/app/user/user_usecase.go:54.2,67.16 3 1
+dating-app/app/user/user_usecase.go:75.2,77.3 1 1
+dating-app/app/user/user_usecase.go:30.16,36.3 2 1
+dating-app/app/user/user_usecase.go:38.19,43.3 1 1
+dating-app/app/user/user_usecase.go:46.16,52.3 2 0
+dating-app/app/user/user_usecase.go:67.16,73.3 2 1
+dating-app/app/user/user_cache_repository.go:13.82,17.2 1 0
+dating-app/app/user/user_cache_repository.go:19.137,22.2 1 0
+dating-app/app/user/user_cache_repository.go:24.137,27.2 1 0

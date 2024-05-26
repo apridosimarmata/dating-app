@@ -1,0 +1,70 @@
+version: "3.8"
+
+services:
+  dating-app:
+    platform: linux/amd64
+    ports:
+        - 3000:3000
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: dating-app
+    env_file:
+        - docker.env
+    volumes:
+        - ./:/go/src/dating-app
+    networks:
+      - local
+    depends_on:
+      redis: 
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+  postgres:
+    container_name: postgres
+    image: postgres:12.0-alpine
+    environment:
+      POSTGRES_DB: dating-app
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      PGDATA: /var/lib/postgresql/data/dating-app
+    volumes:
+      - .docker/postgres-data:/var/lib/postgresql/data/dating-app
+    ports:
+      - "5432:5432"
+    networks:
+      - local
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  redis:
+    container_name: redis
+    image: redis:7.0.0-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - local
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.4.0
+    ports:
+      - "27017:27017"
+    networks:
+      - local
+    healthcheck:
+      test: ["CMD-SHELL", "mongo --eval 'db.stats()'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  uploads:
+networks:
+  local:
+    driver: bridge
