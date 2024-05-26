@@ -64,7 +64,9 @@ func InitServer() chi.Router {
 	}
 
 	usecases := domain.Usecases{
-		AuthUsecase:         authApp.NewAuthUsecase(repositories, common.Secret{}, infrastructure.NewJwt(), utils),
+		AuthUsecase: authApp.NewAuthUsecase(repositories, common.Secret{
+			JwtSecret: config.JWT_SECRET,
+		}, infrastructure.NewJwt(), utils),
 		FeedUsecase:         feedApp.NewFeedUsecase(repositories, infrastructure.NewMutexProvider(*mutexProvider)),
 		UserUsecase:         userApp.NewUserUsecase(repositories, "todo", utils),
 		SubscriptionUsecase: subscriptionApp.NewSubscriptionUsecase(repositories),

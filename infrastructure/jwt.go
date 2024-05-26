@@ -2,7 +2,6 @@ package infrastructure
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/golang-jwt/jwt"
@@ -25,15 +24,15 @@ func (_jwt *JWT) GenerateAccessToken(userUid string, jwtSecret string, isRefresh
 	if isRefreshToken {
 		exp = time.Now().Add(time.Hour * 24 * 30).Unix()
 	}
-	t := jwt.NewWithClaims(jwt.SigningMethodES256,
+	t := jwt.NewWithClaims(jwt.SigningMethodHS256,
 		jwt.MapClaims{
 			"sub": userUid,
 			"exp": exp,
 		})
 
-	signedToken, err := t.SignedString(jwtSecret)
+	signedToken, err := t.SignedString([]byte(jwtSecret))
 	if err != nil {
-		Log("got error on usecase.getSubscriberFeedProfiles() - GetProfileFeeds")
+		Log("got error on t.SignedString() - GenerateAccessToken")
 		return nil, err
 	}
 
@@ -42,11 +41,6 @@ func (_jwt *JWT) GenerateAccessToken(userUid string, jwtSecret string, isRefresh
 
 func (_jwt *JWT) ValidateToken(tokenString string, jwtSecret string) (userUid *string, ttl int64, err error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		_, ok := token.Method.(*jwt.SigningMethodHMAC)
-		if !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
-		}
-
 		return []byte(jwtSecret), nil
 	})
 
@@ -57,7 +51,7 @@ func (_jwt *JWT) ValidateToken(tokenString string, jwtSecret string) (userUid *s
 	payload, ok := token.Claims.(jwt.MapClaims)
 	if ok && token.Valid {
 		userUid := payload["sub"].(string)
-		expStringEpoch := payload["exp"].(int64)
+		expStringEpoch := int64(payload["exp"].(float64))
 		ttl := expStringEpoch - time.Now().Unix()
 		return &userUid, ttl, nil
 	}

@@ -8,11 +8,11 @@ import (
 
 type Tokens struct {
 	Token        string  `json:"token"`
-	RefreshToken *string `json:"refreshToken"`
+	RefreshToken *string `json:"refresh_token"`
 }
 
 type RefreshTokenRequest struct {
-	RefreshToken *string `json:"refreshToken"`
+	RefreshToken *string `json:"refresh_token"`
 }
 
 type LoginRequest struct {

@@ -27,7 +27,7 @@ func (repository *userRepository) GetUserDetailsByEmail(ctx context.Context, ema
 		gender,
 		profile_pic_url,
 		password,
-		dob,
+		date_of_birth,
 		created_at,
 		updated_at
 	FROM

@@ -5,19 +5,19 @@ import (
 	"dating-app/domain/common/response"
 )
 
-var PROFILE_PIC_MAP = map[rune]string{
-	'M': "https://static.vecteezy.com/system/resources/previews/004/991/321/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-vector.jpg",
-	'F': "https://www.shutterstock.com/image-vector/person-gray-photo-placeholder-woman-600nw-1241538838.jpg",
+var PROFILE_PIC_MAP = map[string]string{
+	"M": "https://static.vecteezy.com/system/resources/previews/004/991/321/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-vector.jpg",
+	"F": "https://www.shutterstock.com/image-vector/person-gray-photo-placeholder-woman-600nw-1241538838.jpg",
 }
 
 type User struct {
 	UID           string `json:"uid" gorm:"column=uid"`
 	Name          string `json:"name" gorm:"column=name"`
 	Email         string `json:"email" gorm:"column=email"`
-	Gender        rune   `json:"gender" gorm:"column=gender"`
+	Gender        string `json:"gender" gorm:"column=gender"`
 	ProfilePicUrl string `json:"profile_pic_url" gorm:"column=profile_pic_url"`
 	Password      string `json:"password" gorm:"column=password"`
-	DateOfBirth   string `json:"dob" gorm:"column=dob"`
+	DateOfBirth   string `json:"date_of_birth" gorm:"column=date_of_birth"`
 	CreatedAt     string `json:"created_at" gorm:"column=created_at"`
 	UpdatedAt     string `json:"updated_at" gorm:"column=updated_at"`
 }
@@ -25,8 +25,8 @@ type User struct {
 type UserRegistrationRequest struct {
 	Name        string `json:"name"`
 	Email       string `json:"email"`
-	Gender      rune   `json:"gender"`
-	DateOfBirth string `json:"dob"`
+	Gender      string `json:"gender"`
+	DateOfBirth string `json:"date_of_birth"`
 	Password    string `json:"password"`
 }
 

@@ -8,8 +8,8 @@ import (
 type FeedProfile struct {
 	UserUid       string `json:"user_uid" gorm:"column=uid"`
 	Name          string `json:"name" gorm:"column=name"`
-	Gender        rune   `json:"gender" gorm:"column=gender"`
-	DateOfBirth   string `json:"dob" gorm:"column=dob"`
+	Gender        string `json:"gender" gorm:"column=gender"`
+	DateOfBirth   string `json:"date_of_birth" gorm:"column=date_of_birth"`
 	ProfilePicUrl string `json:"profile_pic_url" gorm:"column=profile_pic_url"`
 }
 

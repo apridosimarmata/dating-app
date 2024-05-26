@@ -13,12 +13,12 @@ var (
 	//TODO
 	ERROR_INTERNAL_SERVER_ERROR = "Internal server error"
 
-	ERROR_REACHED_LIMIT              = ""
+	ERROR_REACHED_LIMIT              = "You have reached daily acitivty limit"
 	ERROR_BAD_REQUEST                = "Bad request: invalid param(s) provided"
 	ERROR_UNAUTHORIZED               = "Bad credentials"
 	ERROR_ANOTHER_PROCESS_IS_RUNNING = "Another process is currently running"
-	ERROR_EMAIL_TAKEN                = "Another process is currently running"
-	ERROR_USER_NOT_FOUND             = "Another process is currently running"
+	ERROR_EMAIL_TAKEN                = "Email already registered"
+	ERROR_USER_NOT_FOUND             = "User not found"
 	ERROR_PACKAGE_NOT_FOUND          = "No such package"
 	ERROR_SUBSCRIPTION_NOT_FOUND     = "Subscription not found"
 )

@@ -43,7 +43,7 @@ func (repository *feedRepository) GetProfileByUids(ctx context.Context, uids []s
 		u.uid, 
 		u.name, 
 		u.gender, 
-		u.dob, 
+		u.date_of_birth, 
 		u.profile_pic_url, 
 		CASE 
 			WHEN s.user_uid IS NOT NULL THEN true
