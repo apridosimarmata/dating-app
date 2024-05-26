@@ -24,7 +24,7 @@ services:
     container_name: postgres
     image: postgres:12.0-alpine
     environment:
-      POSTGRES_DB: dating-app
+      POSTGRES_DB: dating_app
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       PGDATA: /var/lib/postgresql/data/dating-app
